@@ -5,10 +5,10 @@
 **Disclaimer:** Project ini fokus dalam pengintegrasian IoT dan Android dengan Android Studio dengan MVVM Architecture
 ## 🚀 Fitur Utama
 
-- Real-time MQTT streaming — data sensor dari ESP32 langsung dikirim ke broker MQTT publik/privat dan diterima aplikasi Android tanpa polling manual.  
+- Real-time MQTT streaming — data sensor dari ESP32 langsung dikirim ke broker MQTT publik/privat  
 - Dukungan sensor suhu & kelembaban (DHT22) + sensor cahaya (LDR) — sehingga kamu bisa pantau “lingkungan ruangan” secara komprehensif.  
 - Arsitektur modern di Android: MVVM + StateFlow + Kotlin + Coroutines — membuat kode bersih, modular, mudah dipahami dan diskalakan.  
-- Tampilan dashboard langsung mencerminkan data sensor — suhu, kelembaban, dan cahaya tampil otomatis. UI bisa berubah berdasarkan kondisi (misalnya “mode terang / gelap / daylight / night”).  
+- Tampilan dashboard langsung mencerminkan data sensor — suhu, kelembaban, dan cahaya tampil otomatis. UI bisa berubah berdasarkan kondisi 
 - Kompatibel dengan Android 12+ (min SDK 30).  
 
 ## Struktur Proyek & Teknologi
