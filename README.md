@@ -27,10 +27,10 @@ app/
 ├── ui/
 │ └── MainActivity.kt
 ├── viewmodel/
-│ ├── SensorViewModel.kt
-│ └── SensorViewModelFactory.kt
+│     ├── SensorViewModel.kt
+│     └── SensorViewModelFactory.kt
 └── utils/
-    |__smart_room_android_ino
+    |___smart_room_android_ino
 ```
 
 ## 📷 Screenshot / Preview UI
