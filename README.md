@@ -42,10 +42,10 @@ Saat Ruangan Tidak Ada Cahaya sama sekali:
 Saat Ruangan Terdapat Cahaya: 
 ![mode siang](https://github.com/user-attachments/assets/3f58b731-3507-4699-b9b8-4277e56154bc)
 
-**Preview MQTTX**
-<img width="auto" height="350" alt="image" src="https://github.com/user-attachments/assets/7c1c74c3-a0c3-4422-aa15-100653c3c01d" />
+## **Preview MQTTX**
+<img width="745" height="641" alt="image" src="https://github.com/user-attachments/assets/cbe46383-6289-4f14-a00a-ff8d018f597c" />
 
-**Preview Wiring ESP32**
+## **Preview Wiring ESP32**
 <img width="401" height="451" alt="Smart Monitoring Room drawio" src="https://github.com/user-attachments/assets/f6688a9c-4242-463a-bca6-057cba6ec9cc" />
 
 ## 🎯 Setup & Cara Menjalankan (Android)
