@@ -1,188 +1,84 @@
-Smart Monitoring Room (IoT + Android + MQTT + ESP32)
+# Smart-Monitoring-Room (Android + ESP32 + MQTT)
 
-Sistem monitoring ruangan real-time menggunakan Android dan ESP32.
-Proyek ini dirancang agar sederhana untuk dipelajari, namun cukup solid untuk dipakai sebagai dasar IoT monitoring sungguhan.
+**Smart-Monitoring-Room** adalah sebuah aplikasi IoT + Android real-time untuk memonitor kondisi ruangan (suhu, kelembaban, intensitas cahaya) menggunakan ESP32 dan menampilkannya di aplikasi Android berbasis arsitektur modern. Cocok sebagai dasar proyek smart-home, sistem monitoring, atau demo IoT nyata.  
 
-🚀 Overview
+**Disclaimer:** Project ini fokus dalam pengintegrasian IoT dan Android dengan Android Studio dengan MVVM Architecture
+## 🚀 Fitur Utama
 
-Smart Monitoring Room adalah aplikasi Android berbasis MVVM + StateFlow yang menerima data sensor dari ESP32 secara real-time melalui MQTT.
+- Real-time MQTT streaming — data sensor dari ESP32 langsung dikirim ke broker MQTT publik/privat dan diterima aplikasi Android tanpa polling manual.  
+- Dukungan sensor suhu & kelembaban (DHT22) + sensor cahaya (LDR) — sehingga kamu bisa pantau “lingkungan ruangan” secara komprehensif.  
+- Arsitektur modern di Android: MVVM + StateFlow + Kotlin + Coroutines — membuat kode bersih, modular, mudah dipahami dan diskalakan.  
+- Tampilan dashboard langsung mencerminkan data sensor — suhu, kelembaban, dan cahaya tampil otomatis. UI bisa berubah berdasarkan kondisi (misalnya “mode terang / gelap / daylight / night”).  
+- Kompatibel dengan Android 12+ (min SDK 30).  
 
-Device ESP32 mengirimkan data:
-
-🌡️ Temperature (DHT22)
-
-💧 Humidity (DHT22)
-
-💡 Light Level (LDR)
-
-Android menerima data tersebut melalui HiveMQ Public Broker, lalu menampilkan status ruangan secara langsung dalam bentuk dashboard.
-
-✨ Key Features
-📡 Real-time MQTT Streaming
-
-Menggunakan Paho MQTT Java Client (bukan library jadul Android).
-
-Koneksi stabil dan aman untuk Android 12+.
-
-🏛 MVVM Architecture (Clean & Scalable)
-
-ViewModel + Repository + StateFlow
-
-Perubahan data langsung ter-reflect di UI.
-
-📊 Live Sensor Dashboard
-
-Temperatur, kelembaban, dan intensitas cahaya tampil otomatis tanpa refresh.
-
-UI berubah otomatis berdasarkan kondisi ruangan:
-
-Mode Morning (terang)
-
-Mode Night (gelap)
-
-🔌 IoT Friendly
-
-ESP32 publish JSON ke topic MQTT:
-
-{
-  "temperature": 30.7,
-  "humidity": 68.2,
-  "light": 100
-}
-
-📱 Support Android Modern
-
-Min SDK 30
-
-Compatible Android 12, 13, 14
-
-Tidak menggunakan library deprecated yang menyebabkan crash.
-
-🛠 Tech Stack
-Android
-
-Kotlin
-
-MVVM Architecture
-
-StateFlow & Coroutines
-
-ViewBinding
-
-Paho MQTT Client v1.2.5
-
-IoT
-
-ESP32
-
-DHT22 (Temperature & Humidity)
-
-LDR Sensor
-
-HiveMQ Public Broker
-
-📂 Project Structure
+## Struktur Proyek & Teknologi
 app/
- └── java/com.example.smartmonitoringroom/
-      ├── data/
-      │    ├── model/SensorData.kt
-      │    ├── mqtt/MqttClientManager.kt
-      │    └── repository/SensorRepository.kt
-      │
-      ├── ui/
-      │    ├── view/MainActivity.kt
-      │    └── viewmodel/
-      │         ├── SensorUiState.kt
-      │         ├── SensorViewModel.kt
-      │         └── SensorViewModelFactory.kt
-      │
-      └── utils/
-           └── MqttConfig.kt
+└── kotlin/com/example/smartmonitoringroom/
+├── data/
+│ ├── model/
+| |   |__ SensorData.kt
+| |   |__ SensorUiState
+│ ├── mqtt/
+| |   |__ MqttClientManager.kt
+| |   |__ MqttConfig
+│ └── repository/
+| |   |__ SensorRepository.kt
+├── ui/
+│ └── MainActivity.kt
+├── viewmodel/
+│ ├── SensorViewModel.kt
+│ └── SensorViewModelFactory.kt
+└── utils/
+    |__smart_room_android_ino
 
+## 📷 Screenshot / Preview UI
 
-Struktur dibuat agar mudah dikembangkan lagi:
+**Preview UI**
+Saat Ruangan Tidak Ada Cahaya sama sekali:
+![mode malam](https://github.com/user-attachments/assets/a280f94e-74af-4134-a67e-cc45588b23ce)
 
-tambah chart
+Saat Ruangan Terdapat Cahaya: 
+![mode siang](https://github.com/user-attachments/assets/3f58b731-3507-4699-b9b8-4277e56154bc)
 
-tambah histori database
+**Preview MQTTX**
+<img width="1112" height="754" alt="image" src="https://github.com/user-attachments/assets/7c1c74c3-a0c3-4422-aa15-100653c3c01d" />
 
-tambah kontrol lampu / relay
+**Preview Wiring ESP32**
+<img width="401" height="451" alt="Smart Monitoring Room drawio" src="https://github.com/user-attachments/assets/f6688a9c-4242-463a-bca6-057cba6ec9cc" />
 
-tambah notifikasi MQTT
-
-⚙️ Cara Menjalankan (Android)
-
-Clone repository
-
-git clone https://github.com/username/smart-monitoring-room.git
-
-
-Buka di Android Studio (Hedgehog atau terbaru)
-
-Pastikan dependency ini ada:
-
-implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5"
-
-
-Edit broker di:
-
-MqttConfig.SERVER_URL
-
-
-Default:
-
+## 🎯 Setup & Cara Menjalankan (Android)
+1. Clone repository  
+   ```bash
+   git clone https://github.com/username/Smart-Monitoring-Room-Android-ESP32.git
+2. Buka di Android Studio (versi terbaru direkomendasikan)
+3. Pastikan dependency berikut sudah ada di build.gradle:
+  ```gradle
+  implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5"
+```
+4. Atur URL broker di MqttConfig.SERVER_URL. Contoh default:
+```Kotlin
 tcp://broker.hivemq.com:1883
+```
+5. Jalankan aplikasi di emulator atau HP Android dan akan langsung mulai menerima data dari ESP32 (jika ESP32 sudah mengirim ke topik MQTT sesuai pengaturan)
 
 
-Jalankan aplikasi di emulator / HP.
-
-🔧 Contoh Data dari ESP32
-
-Publish ke topic:
-
-SMR/Android/Data
-
-
-Payload:
-
+## 📥 Contoh Payload dari ESP32
+```json
 {
   "temperature": 28.4,
   "humidity": 63.1,
   "light": 1500
 }
+```
 
-📸 Screenshots (Tambahkan Sendiri)
+## 🔭 Roadmap / Fitur Lanjutan yang Bisa Ditambahkan
 
-Tambahkan screenshot UI kamu di sini:
+- Menyimpan data historis ke database lokal (misalnya Room / SQLite) atau cloud + plotting grafik waktu
+- Menambahkan notifikasi bila suhu / kelembaban / cahaya melewati batas aman
+- Menambahkan kontrol perangkat (misalnya lampu / kipas / AC) via MQTT / relay / ESP32 — menjadikan ini sistem smart-home penuh
+- Mode gelap (dark mode UI)
+- UI dan UX makin rapi & menarik
 
-Dashboard terang
-
-Dashboard gelap
-
-Log real-time
-
-📈 Roadmap (Pengembangan Lanjutan)
-
- Tambah grafik historis
-
- Simpan data ke Room Database
-
- Tambahkan notifikasi jika suhu / kelembaban ekstrem
-
- Tambah kontrol (lampu, AC, kipas) via MQTT
-
- Mode gelap UI
-
-🤝 Kontribusi
-
-Pull request terbuka untuk siapa pun yang ingin:
-
-menambah fitur,
-
-memperbaiki bug,
-
-atau menyumbang UI lebih keren.
-
-🧑‍💻 Creator
-
-Dibuat sebagai proyek IoT & Android modern yang dapat dikembangkan menjadi sistem monitoring skala lebih besar.
+## 🤝 Kontribusi
+Pull request, isu, dan saran sangat dipersilakan.
+Silakan fork proyek ini, kembangkan fitur baru, atau perbaiki bug lalu ajukan PR.
