@@ -12,6 +12,7 @@
 - Kompatibel dengan Android 12+ (min SDK 30).  
 
 ## Struktur Proyek & Teknologi
+```bash
 app/
 └── kotlin/com/example/smartmonitoringroom/
 ├── data/
@@ -30,6 +31,7 @@ app/
 │ └── SensorViewModelFactory.kt
 └── utils/
     |__smart_room_android_ino
+```
 
 ## 📷 Screenshot / Preview UI
 
